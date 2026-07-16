@@ -13,7 +13,7 @@ jobs:
 
       - uses: actions/setup-node@v6.4.0
         with:
-          node-version: "26.1.0"
+          node-version: "26.5.0"
 
       - run: |
           sudo apt-get update
@@ -32,21 +32,21 @@ jobs:
 
           mkdir --parents release/assets/modules/greenworks-nw-0.35
 
-          npx node-gyp configure --target=0.112.0 --arch=x64 --disturl=https://dl.nwjs.io/
-          npx node-gyp build --target=0.112.0 --arch=x64 --disturl=https://dl.nwjs.io/
+          npx node-gyp configure --target=0.113.0 --arch=x64 --disturl=https://dl.nwjs.io/
+          npx node-gyp build --target=0.113.0 --arch=x64 --disturl=https://dl.nwjs.io/
           mv lib release/assets/modules/greenworks-nw-0.35/linux64
 
-          npx node-gyp configure --target=0.112.0 --arch=ia32 --disturl=https://dl.nwjs.io/
-          CFLAGS="-fPIC" CXXFLAGS="-fPIC" npx node-gyp build --target=0.112.0 --arch=ia32 --disturl=https://dl.nwjs.io/
+          npx node-gyp configure --target=0.113.0 --arch=ia32 --disturl=https://dl.nwjs.io/
+          CFLAGS="-fPIC" CXXFLAGS="-fPIC" npx node-gyp build --target=0.113.0 --arch=ia32 --disturl=https://dl.nwjs.io/
           mv lib release/assets/modules/greenworks-nw-0.35/linux32
 
           cd release
-          zip -r crosscode-v1.4.2-3-nwjs-v0.112.0-gw-v0.22.0-sw-v1.62.zip assets
+          zip -r crosscode-v1.4.2-3-nwjs-v0.113.0-gw-v0.22.0-sw-v1.62.zip assets
 
       - uses: softprops/action-gh-release@v3
         with:
           tag_name: Release
           files: |
-            greenworks/release/crosscode-v1.4.2-3-nwjs-v0.112.0-gw-v0.22.0-sw-v1.62.zip
+            greenworks/release/crosscode-v1.4.2-3-nwjs-v0.113.0-gw-v0.22.0-sw-v1.62.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
